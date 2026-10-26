@@ -36,30 +36,21 @@ To implement a Decision Tree classifier using the ID3 algorithm on the Online Re
 ## PROGRAM
 
 ```python
-import os
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score, classification_report
 
-data = pd.read_csv(
-    os.path.join(os.path.dirname(__file__), "OnlineRetail.csv"),
-    encoding="ISO-8859-1"
-)
+data = pd.read_csv(r'7/OnlineRetail.csv', encoding="ISO-8859-1")
 
-print("Data Columns:", data.columns)
-
-data = data.rename(columns={
-    "Invoice": "InvoiceNo",
-    "Price": "UnitPrice",
-    "Customer ID": "CustomerID"
-})
+print("data", data.columns)
 
 data = data.dropna()
 data["TotalAmount"] = data["Quantity"] * data["UnitPrice"]
 
-print("Data Columns:", data.columns)
+print("data", data.columns)
 
 customer = data.groupby("CustomerID").agg({
     "Quantity": "sum",
@@ -111,6 +102,7 @@ plot_tree(
 )
 
 plt.show()
+
 ```
 
 ## OUTPUT
